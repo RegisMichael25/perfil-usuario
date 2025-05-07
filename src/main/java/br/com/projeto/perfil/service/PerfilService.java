@@ -1,4 +1,4 @@
-package PACKAGE_NAME;
+package br.com.projeto.perfil.service;
 
 public class PerfilService {
 }
