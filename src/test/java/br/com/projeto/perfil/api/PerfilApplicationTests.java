@@ -1,4 +1,4 @@
-package br.com.projeto.perfil;
+package br.com.projeto.perfil.api;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

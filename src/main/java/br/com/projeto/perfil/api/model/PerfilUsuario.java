@@ -1,4 +1,4 @@
-package br.com.projeto.perfil.model;
+package br.com.projeto.perfil.api.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -6,8 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * @author pedrovictor
- * @since 2025.
+ * @author Regis Michael
+ * @since 2025-10-12
  */
 
 
@@ -23,6 +23,9 @@ public class PerfilUsuario {
 
     @Column(name = "nome", nullable = false, length = 255)
     private String nome;
+
+    @Column(name = "email", nullable = false, length = 300)
+    private String email;
 
     @Column(name = "idade", nullable = false)
     private Integer idade;
