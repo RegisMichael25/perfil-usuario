@@ -1,4 +1,4 @@
-package br.com.projeto.perfil;
+package br.com.projeto.perfil.api;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
