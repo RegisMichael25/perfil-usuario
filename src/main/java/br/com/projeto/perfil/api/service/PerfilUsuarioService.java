@@ -1,7 +1,5 @@
 package br.com.projeto.perfil.api.service;
 
-
-import br.com.projeto.perfil.api.mapper.PerfilUsuarioMapper;
 import br.com.projeto.perfil.api.model.PerfilUsuario;
 import br.com.projeto.perfil.api.repository.PerfilUsuarioRepository;
 import jakarta.transaction.Transactional;
@@ -21,7 +19,6 @@ import java.util.Optional;
 public class PerfilUsuarioService {
 
     private PerfilUsuarioRepository perfilUsuarioRepository;
-    private PerfilUsuarioMapper mapper;
 
     public PerfilUsuario create(PerfilUsuario perfilUsuario)
     {
@@ -39,11 +36,9 @@ public class PerfilUsuarioService {
     }
 
     @Transactional
-    public PerfilUsuario update(Long id, PerfilUsuario perfilUsuarioUpdate)
+    public void update(Long id, PerfilUsuario perfilUsuarioUpdate)
     {
-            Optional<PerfilUsuario> perfilCurrent = findById(id);
-            mapper.toModel(perfilUsuarioUpdate, perfilCurrent);
-            return perfilUsuarioRepository.save(perfilCurrent.get());
+
     }
 
     public void delete(Long id){ perfilUsuarioRepository.deleteById(id);}
