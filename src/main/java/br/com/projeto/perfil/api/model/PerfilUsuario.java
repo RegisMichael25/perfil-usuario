@@ -1,6 +1,11 @@
 package br.com.projeto.perfil.api.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -42,7 +47,7 @@ public class PerfilUsuario {
     @Column(name = "caminho_imagem", length = 255)
     private String caminhoImagem;
 
-    @Column(name = "descricao", length = 500)
-    private String descricao;
+    @Column(name = "bio", length = 500)
+    private String bio;
 
 }

@@ -1,0 +1,187 @@
+openapi: 3.0.3
+info:
+  title: API de resgate de perfil de usuário.
+  version: 1.0.0
+  description: Uma API simples para resgatar perfis.
+
+servers:
+  - url: http://localhost:8080
+
+tags:
+  - name: PerfilUsuario
+    description: Paths com vinculo a perfil de usuario
+
+paths:
+  /perfil-usuario:
+    get:
+      summary: Lista todos os perfis
+      tags:
+        - PerfilUsuario
+      operationId: listProfiles
+      responses:
+        '200':
+          description: Sucesso ao retornar lista.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PerfilUsuarioResponse'
+    post:
+      summary: Cria perfil
+      tags:
+        - PerfilUsuario
+      operationId: createProfile
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PerfilUsuarioRequest'
+      responses:
+        '201':
+          description: Perfil criado com sucesso.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PerfilUsuarioResponse'
+  /perfil-usuario/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+    get:
+      summary: Retorna um único perfil.
+      tags:
+        - PerfilUsuario
+      operationId: getProfile
+      parameters:
+        - name: id
+          in: path
+          description: Identificador de perfil usuario
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Sucesso ao retornar perfil.
+          content:
+            application/json:
+              schema:
+                type: string
+                items:
+                  $ref: '#/components/schemas/PerfilUsuarioRequest'
+        '404':
+          description: Perfil não encontrado.
+    put:
+      summary: Atualiza perfil de usuário.
+      tags:
+        - PerfilUsuario
+      operationId: updateProfile
+      parameters:
+        - name: id
+          in: path
+          description: Identificador de perfil usuario
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PerfilUsuarioRequest'
+      responses:
+        '200':
+          description: Perfil atualizado com sucesso!
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PerfilUsuarioRequest'
+        '404':
+          description: Perfil não encontrado.
+    delete:
+      summary: Exclui um perfil por ID.
+      tags:
+        - PerfilUsuario
+      operationId: deleteProfile
+      parameters:
+        - name: id
+          in: path
+          description: Identificador de perfil usuario
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '204':
+          description: Perfil excluido com sucesso.
+        '404':
+          description: Perfil não encontrado.
+components:
+  schemas:
+    PerfilUsuarioRequest:
+      type: object
+      required:
+        - id
+        - nome
+        - email
+        - profissao
+        - idade
+        - formacaoAcademica
+        - codigo
+        - caminhoImagem
+        - bio
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Identificador único de usuário
+        nome:
+          type: string
+          description: Nome do usuário
+        email:
+          type: string
+          description: E-mail do usuário
+        profissao:
+          type: string
+          description: Profissão do usuário
+        idade:
+          type: integer
+          format: int64
+        formacaoAcademica:
+          type: string
+        codigo:
+          type: string
+        caminhoImagem:
+          type: string
+        bio:
+          type: string
+    PerfilUsuarioResponse:
+      type: object
+      properties:
+        nome:
+          type: string
+          description: Nome do usuário
+        email:
+          type: string
+          description: E-mail do usuário
+        profissao:
+          type: string
+          description: Profissão do usuário
+        idade:
+          type: integer
+          format: int64
+        formacaoAcademica:
+          type: string
+        codigo:
+          type: string
+        caminhoImagem:
+          type: string
+        bio:
+          type: string
