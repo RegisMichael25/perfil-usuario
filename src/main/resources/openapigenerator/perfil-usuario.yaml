@@ -26,10 +26,11 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/PerfilUsuarioRequest'
-
+                  $ref: '#/components/schemas/PerfilUsuarioResponse'
     post:
       summary: Cria perfil
+      tags:
+        - PerfilUsuario
       operationId: createProfile
       requestBody:
         required: true
@@ -43,7 +44,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PerfilUsuarioRequest'
+                $ref: '#/components/schemas/PerfilUsuarioResponse'
   /perfil-usuario/{id}:
     parameters:
       - name: id
@@ -54,13 +55,17 @@ paths:
           format: uuid
     get:
       summary: Retorna um único perfil.
+      tags:
+        - PerfilUsuario
       operationId: getProfile
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/PerfilUsuarioRequest'
+      parameters:
+        - name: id
+          in: path
+          description: Identificador de perfil usuario
+          required: true
+          schema:
+            type: string
+            format: uuid
       responses:
         '200':
           description: Sucesso ao retornar perfil.
@@ -74,7 +79,17 @@ paths:
           description: Perfil não encontrado.
     put:
       summary: Atualiza perfil de usuário.
+      tags:
+        - PerfilUsuario
       operationId: updateProfile
+      parameters:
+        - name: id
+          in: path
+          description: Identificador de perfil usuario
+          required: true
+          schema:
+            type: string
+            format: uuid
       requestBody:
         required: true
         content:
@@ -92,7 +107,17 @@ paths:
           description: Perfil não encontrado.
     delete:
       summary: Exclui um perfil por ID.
+      tags:
+        - PerfilUsuario
       operationId: deleteProfile
+      parameters:
+        - name: id
+          in: path
+          description: Identificador de perfil usuario
+          required: true
+          schema:
+            type: string
+            format: uuid
       responses:
         '204':
           description: Perfil excluido com sucesso.
@@ -117,6 +142,29 @@ components:
           type: string
           format: uuid
           description: Identificador único de usuário
+        nome:
+          type: string
+          description: Nome do usuário
+        email:
+          type: string
+          description: E-mail do usuário
+        profissao:
+          type: string
+          description: Profissão do usuário
+        idade:
+          type: integer
+          format: int64
+        formacaoAcademica:
+          type: string
+        codigo:
+          type: string
+        caminhoImagem:
+          type: string
+        bio:
+          type: string
+    PerfilUsuarioResponse:
+      type: object
+      properties:
         nome:
           type: string
           description: Nome do usuário
